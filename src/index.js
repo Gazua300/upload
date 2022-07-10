@@ -38,6 +38,20 @@ app.post('/upload', async(req, res)=>{
 })
 
 
+app.get('/file', async(req, res)=>{
+    var statusCode = 400
+    try{
+
+        const images = await db('imageUpload')
+
+        
+        res.status(200).send(images)
+    }catch(e){
+        res.status(statusCode).send(e.message || e.sq.Message)
+    }
+})
+
+
 app.get('/file/:id', async(req, res)=>{
     var statusCode = 400
     try{
